@@ -19,20 +19,32 @@ namespace Account
         }
         public void Deposit(int amount)
         {
-            if(amount<0)
+            if(amount<0 || amount==0)
             {
-                throw new ArgumentOutOfRangeException("Less than zero");
+                throw new NullReferenceException("Can't be zero or negative");
+            }
+            else if(amount>10000000)
+            {
+                throw new ArgumentOutOfRangeException("Can't deposit more than 10mln at once");
             }
             balance += amount;
         }
 
         public void Withdraw(int amount)
         {
-            if(amount>(balance+debit))
+            if(amount>balance)
             {
-                throw new ArgumentOutOfRangeException("Limit exceeded");
+                if(amount>(balance+debit))
+                {
+                    throw new ArgumentOutOfRangeException("Limit exceeded");
+                }
+                debit -= amount;
             }
-            balance = balance - amount;
+            else if(amount<0 || amount==0)
+            {
+                throw new NullReferenceException("Can't be zero or negative");
+            }
+            balance -= amount;
         }
 
     }
