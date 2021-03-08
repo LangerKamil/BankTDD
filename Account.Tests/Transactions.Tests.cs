@@ -5,6 +5,8 @@ namespace Account.Tests
 {
     public class Tests
     {
+        Transactions transactions;
+
         [SetUp]
         public void Setup()
         {
@@ -92,5 +94,61 @@ namespace Account.Tests
                 transaction.Withdraw(-100);
             });
         }
+
+        // Zad 2.1
+
+        [Test]
+        public void Test10_Transfering_100_euro_return_455()
+        {
+            CurrencyService currencyService = new CurrencyService();
+            var rate = currencyService.GetRate("euro");
+            
+            var transaction = new Transactions(300,200,rate);
+            var wynik = transaction.InternationalTransfer(100);
+           
+            Assert.AreEqual(455,wynik);
+        }
+        
+        [Test]
+        public void Test11_Transfering_200_pounds_return_1112()
+        {
+            CurrencyService currencyService = new CurrencyService();
+            var rate = currencyService.GetRate("pound");
+            
+            var transaction = new Transactions(300,200,rate);
+            var wynik = transaction.InternationalTransfer(200);
+           
+            Assert.AreEqual(1056,wynik);
+        }
+
+        [Test]
+        public void Test12_Transfering_300_usdolars_return_1143()
+        {
+            CurrencyService currencyService = new CurrencyService();
+            var rate = currencyService.GetRate("usdolar");
+            
+            var transaction = new Transactions(300,200,rate);
+            var wynik = transaction.InternationalTransfer(300);
+           
+            Assert.AreEqual(1146,wynik);
+        }
+
+        [Test]
+        public void Test10_Transfering_100_euros_return_mocked_6()
+        {
+            var currencyServiceMock = new Moq.Mock<CurrencyService>();
+            currencyServiceMock.Setup(x=>x.GetRate("euro")).Returns(0.06);
+
+            CurrencyService currencyService = currencyServiceMock.Object;
+            var rate = currencyService.GetRate("euro");
+
+
+            var transaction = new Transactions(300,200,rate);
+            var wynik = transaction.InternationalTransfer(100);
+           
+            Assert.AreEqual(6,wynik);
+        }
+
+
     }
 }

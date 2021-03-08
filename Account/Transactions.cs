@@ -6,12 +6,20 @@ namespace Account
     {
         private double debit = 100;
         private double balance = 100;
+        private int currency = 1;
+        private double rate = 1;
 
         public Transactions(double balance, double debit)
         {
             this.balance = balance;
             this.debit = debit;
         }       
+        public Transactions(double balance, double debit, double rate)
+        {
+            this.balance = balance;
+            this.debit = debit;
+            this.rate = rate;
+        }
 
         public double Balance
         {
@@ -45,6 +53,14 @@ namespace Account
                 throw new NullReferenceException("Can't be zero or negative");
             }
             balance -= amount;
+        }
+
+        public double InternationalTransfer(double amount)
+        {
+            double exchanged = Math.Round(amount * rate);
+            balance -= exchanged;
+            System.Console.WriteLine($"Transfering {exchanged}");
+            return exchanged;
         }
 
     }
