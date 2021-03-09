@@ -4,21 +4,20 @@ namespace Account
 {
     public class Transactions
     {
+        CurrencyService currencyService;
         private double debit = 100;
         private double balance = 100;
-        private int currency = 1;
-        private double rate = 1;
 
         public Transactions(double balance, double debit)
         {
             this.balance = balance;
             this.debit = debit;
         }       
-        public Transactions(double balance, double debit, double rate)
+        public Transactions(double balance, double debit, CurrencyService currencyService)
         {
             this.balance = balance;
             this.debit = debit;
-            this.rate = rate;
+            this.currencyService = currencyService;
         }
 
         public double Balance
@@ -55,11 +54,25 @@ namespace Account
             balance -= amount;
         }
 
-        public double InternationalTransfer(double amount)
+        public double Transfer(double amount)
         {
+            var rate = currencyService.GetRate();
+
             double exchanged = Math.Round(amount * rate);
+            if(exchanged>balance)
+            {
+                if(exchanged>(balance+debit))
+                {
+                    throw new ArgumentOutOfRangeException("Not enough money to transfer");
+                }
+                debit -= exchanged;
+            }
+            else if(exchanged<0 || exchanged==0)
+            {
+                throw new NullReferenceException("Can't be zero or negative");
+            }
             balance -= exchanged;
-            System.Console.WriteLine($"Transfering {exchanged}");
+
             return exchanged;
         }
 

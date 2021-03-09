@@ -5,7 +5,7 @@ namespace Account.Tests
 {
     public class Tests
     {
-        Transactions transactions;
+        CurrencyService currencyService;
 
         [SetUp]
         public void Setup()
@@ -100,11 +100,10 @@ namespace Account.Tests
         [Test]
         public void Test10_Transfering_100_euro_return_455()
         {
-            CurrencyService currencyService = new CurrencyService();
-            var rate = currencyService.GetRate("euro");
-            
-            var transaction = new Transactions(300,200,rate);
-            var wynik = transaction.InternationalTransfer(100);
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("euro");
+
+            var transaction = new Transactions(300,200,currencyServiceMock.Object);
+            var wynik = transaction.Transfer(100);
            
             Assert.AreEqual(455,wynik);
         }
@@ -112,11 +111,10 @@ namespace Account.Tests
         [Test]
         public void Test11_Transfering_200_pounds_return_1112()
         {
-            CurrencyService currencyService = new CurrencyService();
-            var rate = currencyService.GetRate("pound");
-            
-            var transaction = new Transactions(300,200,rate);
-            var wynik = transaction.InternationalTransfer(200);
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("pound");
+
+            var transaction = new Transactions(800,300,currencyServiceMock.Object);
+            var wynik = transaction.Transfer(200);
            
             Assert.AreEqual(1056,wynik);
         }
@@ -124,31 +122,116 @@ namespace Account.Tests
         [Test]
         public void Test12_Transfering_300_usdolars_return_1143()
         {
-            CurrencyService currencyService = new CurrencyService();
-            var rate = currencyService.GetRate("usdolar");
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("usdolar");
             
-            var transaction = new Transactions(300,200,rate);
-            var wynik = transaction.InternationalTransfer(300);
+            var transaction = new Transactions(1000,200,currencyServiceMock.Object);
+            var wynik = transaction.Transfer(300);
            
             Assert.AreEqual(1146,wynik);
         }
 
         [Test]
-        public void Test10_Transfering_100_euros_return_mocked_6()
+        public void Test13_Transfering_300_usdolars_with_500_onAccount_should_throw_OutOfRangeEx()
         {
-            var currencyServiceMock = new Moq.Mock<CurrencyService>();
-            currencyServiceMock.Setup(x=>x.GetRate("euro")).Returns(0.06);
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("usdolar");
 
-            CurrencyService currencyService = currencyServiceMock.Object;
-            var rate = currencyService.GetRate("euro");
+            var transaction = new Transactions(300,200,currencyServiceMock.Object);
 
+            Assert.Throws<ArgumentOutOfRangeException>(() =>{
+                transaction.Transfer(300);
+            });
+        }
 
-            var transaction = new Transactions(300,200,rate);
-            var wynik = transaction.InternationalTransfer(100);
+        [Test]
+        public void Test14_Transfering_minus_300_euros_should_throw_NullReferenceEx()
+        {
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("euro");
+            
+            var transaction = new Transactions(300,200,currencyServiceMock.Object);
+            
+            Assert.Throws<NullReferenceException>(() =>{
+                transaction.Transfer(-300);
+            });
+        }
+
+        [Test]
+        public void Test15_Transfering_100_euros_return_mocked_6()
+        {
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("euro");
+            currencyServiceMock.Setup(x=>x.GetRate()).Returns(0.06);
+
+            var transaction = new Transactions(300,200,currencyServiceMock.Object);
+            var wynik = transaction.Transfer(100);
            
             Assert.AreEqual(6,wynik);
         }
 
+        [Test]
+        public void Test16_Transfering_minus_300_euros_should_throw_NullReferenceEx()
+        {
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("euro");
+            currencyServiceMock.Setup(x=>x.GetRate()).Returns(4.5517);
+            
+            var transaction = new Transactions(300,200,currencyServiceMock.Object);
+            
+            Assert.Throws<NullReferenceException>(() =>{
+                transaction.Transfer(-300);
+            });
+        }
 
+        [Test]
+        public void Test17_Transfering_100_euros_return_mocked_6()
+        {
+            var currencyServiceMock = new Moq.Mock<CurrencyService>("euro");
+            currencyServiceMock.Setup(x=>x.GetRate()).Returns(0.06);
+
+            var transaction = new Transactions(300,200,currencyServiceMock.Object);
+            var wynik = transaction.Transfer(100);
+           
+            Assert.AreEqual(6,wynik);
+        }
+        [Test]
+        public void Test18_Giving_random_characters_as_an_argument_throw_ArgumentOutOfRangeEx()
+        {
+            
+            Assert.Throws<ArgumentOutOfRangeException>(()=>{
+            
+                currencyService = new CurrencyService("12f43@4!");
+
+            });
+
+        }
+
+        [Test]
+        public void Test19_Giving_more_than_10_characters_as_an_argument_throw_ArgumentOutOfRangeEx()
+        {
+            
+            Assert.Throws<ArgumentOutOfRangeException>(()=>{
+            
+                currencyService = new CurrencyService("01245678910");
+
+            });
+
+        }
+
+        [Test]
+        public void Test20_CurrencyName_in_uppercase_is_transformed_to_lowercase()
+        {
+            
+            Assert.Pass("argument transformed to lowercase",currencyService = new CurrencyService("EURo"));
+
+        }
+
+        [Test]
+        public void Test21_Giving_null_as_an_argument_throw_NullReferenceEx()
+        {
+            
+            Assert.Throws<NullReferenceException>(()=>{
+            
+                currencyService = new CurrencyService(null);
+
+            });
+
+        }
     }
 }
