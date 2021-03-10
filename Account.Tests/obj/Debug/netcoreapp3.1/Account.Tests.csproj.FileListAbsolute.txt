@@ -7,6 +7,7 @@ G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Account.Tests.runtimeconf
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Account.Tests.runtimeconfig.dev.json
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Account.Tests.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Account.Tests.pdb
+G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Microsoft.DotNet.InternalAbstractions.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.CoreUtilities.dll
@@ -17,6 +18,7 @@ G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.Cr
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.Utilities.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.Common.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\testhost.dll
+G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Moq.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
 G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\nunit.framework.dll
@@ -96,5 +98,3 @@ G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.csproj.Copy
 G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.dll
 G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.pdb
 G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.genruntimeconfig.cache
-G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
-G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Moq.dll

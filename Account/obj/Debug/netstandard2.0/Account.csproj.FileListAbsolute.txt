@@ -1,9 +1,9 @@
+G:\repos\BankTDD\Account\bin\Debug\netstandard2.0\Account.deps.json
+G:\repos\BankTDD\Account\bin\Debug\netstandard2.0\Account.dll
+G:\repos\BankTDD\Account\bin\Debug\netstandard2.0\Account.pdb
 G:\repos\BankTDD\Account\obj\Debug\netstandard2.0\Account.csprojAssemblyReference.cache
 G:\repos\BankTDD\Account\obj\Debug\netstandard2.0\Account.AssemblyInfoInputs.cache
 G:\repos\BankTDD\Account\obj\Debug\netstandard2.0\Account.AssemblyInfo.cs
 G:\repos\BankTDD\Account\obj\Debug\netstandard2.0\Account.csproj.CoreCompileInputs.cache
-G:\repos\BankTDD\Account\bin\Debug\netstandard2.0\Account.deps.json
-G:\repos\BankTDD\Account\bin\Debug\netstandard2.0\Account.dll
-G:\repos\BankTDD\Account\bin\Debug\netstandard2.0\Account.pdb
 G:\repos\BankTDD\Account\obj\Debug\netstandard2.0\Account.dll
 G:\repos\BankTDD\Account\obj\Debug\netstandard2.0\Account.pdb
