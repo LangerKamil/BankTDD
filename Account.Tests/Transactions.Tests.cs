@@ -101,6 +101,7 @@ namespace Account.Tests
         public void Test10_Transfering_100_euro_return_455()
         {
             var currencyServiceMock = new Moq.Mock<CurrencyService>("euro");
+            currencyServiceMock.Setup(x=>x.GetRate()).Returns(4.5517);
 
             var transaction = new Transactions(300,200,currencyServiceMock.Object);
             var wynik = transaction.Transfer(100);
@@ -112,6 +113,7 @@ namespace Account.Tests
         public void Test11_Transfering_200_pounds_return_1112()
         {
             var currencyServiceMock = new Moq.Mock<CurrencyService>("pound");
+            currencyServiceMock.Setup(x=>x.GetRate()).Returns(5.2780);
 
             var transaction = new Transactions(800,300,currencyServiceMock.Object);
             var wynik = transaction.Transfer(200);
@@ -123,6 +125,7 @@ namespace Account.Tests
         public void Test12_Transfering_300_usdolars_return_1143()
         {
             var currencyServiceMock = new Moq.Mock<CurrencyService>("usdolar");
+            currencyServiceMock.Setup(x=>x.GetRate()).Returns(3.8198);
             
             var transaction = new Transactions(1000,200,currencyServiceMock.Object);
             var wynik = transaction.Transfer(300);
@@ -134,6 +137,7 @@ namespace Account.Tests
         public void Test13_Transfering_300_usdolars_with_500_onAccount_should_throw_OutOfRangeEx()
         {
             var currencyServiceMock = new Moq.Mock<CurrencyService>("usdolar");
+            currencyServiceMock.Setup(x=>x.GetRate()).Returns(3.8198);
 
             var transaction = new Transactions(300,200,currencyServiceMock.Object);
 
@@ -155,7 +159,7 @@ namespace Account.Tests
         }
 
         [Test]
-        public void Test15_Transfering_100_euros_return_mocked_6()
+        public void Test15_Transfering_100_euros_return_6()
         {
             var currencyServiceMock = new Moq.Mock<CurrencyService>("euro");
             currencyServiceMock.Setup(x=>x.GetRate()).Returns(0.06);
@@ -218,7 +222,7 @@ namespace Account.Tests
         public void Test20_CurrencyName_in_uppercase_is_transformed_to_lowercase()
         {
             
-            Assert.Pass("argument transformed to lowercase",currencyService = new CurrencyService("EURo"));
+            Assert.Pass("Lowercased",currencyService = new CurrencyService("EURo"));
 
         }
 
