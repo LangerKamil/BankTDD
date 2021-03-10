@@ -96,3 +96,5 @@ G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.csproj.Copy
 G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.dll
 G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.pdb
 G:\repos\BankTDD\Account.Tests\obj\Debug\netcoreapp3.1\Account.Tests.genruntimeconfig.cache
+G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
+G:\repos\BankTDD\Account.Tests\bin\Debug\netcoreapp3.1\Moq.dll
